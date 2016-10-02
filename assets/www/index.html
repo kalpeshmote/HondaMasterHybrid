@@ -1,0 +1,49 @@
+<html>
+<head>
+    <title>Test </title>
+
+    <!-- jQuery library -->
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/utils.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+
+    <script>
+
+
+function onBodyLoad() {
+
+		//document.addEventListener("orientationchange", orientationChange, true);
+		document.addEventListener("deviceready", onDeviceReady, false);
+
+}
+
+		function onDeviceReady() {
+		$.ajax({
+			url:"http://honda-env.us-west-2.elasticbeanstalk.com/test.html",
+			headers: {"X-Requested-With" : "XMLHttpRequest","Content-Type":"application/json"},
+			type: 'GET',
+			crossDomain: true,
+			success: function(response){
+				var result = response;
+				//alert("entered"+result);
+				//var result2= result.data;
+				//alert("success"+result2);
+				$("#main").append(result);
+				//$("#main").html(result2);
+			},
+			error: function(data){
+				alert("error");
+			}
+		});
+
+	}
+
+</script>
+
+</head>
+
+<body onload='onBodyLoad();' id="main">
+
+</body>
+</html>
